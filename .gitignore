@@ -1,0 +1,39 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Django secret key and settings
+*.sqlite3
+db.sqlite3
+.env
+*.log
+
+# Static and media files (optional)
+staticfiles/
+media/
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Migrations (optional, but not recommended)
+**/migrations/**  # Exclude migrations if you don’t want them in Git
+
+# Node.js dependencies (if using frontend like React/Vue)
+node_modules/
+npm-debug.log
+yarn.lock
+
+# Docker / Deployment files (if using)
+docker-compose.override.yml
+
+# Coverage reports
+htmlcov/
+.coverage
