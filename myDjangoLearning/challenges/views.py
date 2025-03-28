@@ -1,3 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def firstChallenge(request):
+    return HttpResponse("this is challenges page")
