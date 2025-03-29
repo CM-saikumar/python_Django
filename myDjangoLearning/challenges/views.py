@@ -108,7 +108,7 @@ def list_of_months(request):
     for month in months:
         capitalize_month = month.capitalize()
         month_path = reverse("montly-challenge", args=[month])
-        list_items += f"<li><a href=\"{month_path}\">{capitalize_month}</a></li>"
+        list_items += f"<li><a href=\"{month_path}\"><h2>{capitalize_month}</h2></a></li>"
 
     response_data = f"<ul>{list_items}</ul>"
     return HttpResponse(response_data)
