@@ -105,9 +105,8 @@ def monthly_challenges(request, month):
     if month in japan_travel_challenges:
         place = japan_travel_challenges[month]["place"]
         activities = japan_travel_challenges[month]["activities"]
-        activities_list = "<ol>" + \
-            "".join(
-                f"<li>{activity}</li>" for activity in activities) + "</ol>"
+        activities_list = f"<ol>{''.join(f'<li>{activity}</li>' for activity in activities)}</ol>"
+
         return HttpResponse(f"<h1>{month.capitalize()}</h1><h2>Destination: {place}</h2>{activities_list}")
     else:
         return HttpResponseNotFound("<h1>Not a valid month</h1>")
