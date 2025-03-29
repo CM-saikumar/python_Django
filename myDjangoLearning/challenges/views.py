@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 japan_travel_challenges = {
     "january": {
@@ -99,6 +99,15 @@ japan_travel_challenges = {
         ]
     }
 }
+
+
+def monthly_challenges_by_number(request, month):
+    months = list(japan_travel_challenges.keys())
+
+    if month > len(months):
+        return HttpResponseNotFound("<h1>Not a valid month</h1>")
+    redirect_month = months[month - 1]
+    return HttpResponseRedirect("/challenges/" + redirect_month)
 
 
 def monthly_challenges(request, month):
