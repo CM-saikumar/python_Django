@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ month|capfirst }} Travel Challenge</title>
+</head>
+<body>
+    <h1>{{ month|capfirst }}</h1>
+    <h2>Destination: {{ place }}</h2>
+    <h3>Activities:</h3>
+    <ol>
+        {% for activity in activities %}
+            <li>{{ activity }}</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
