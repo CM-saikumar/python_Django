@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 japan_travel_challenges = {
     "january": {
@@ -128,8 +129,11 @@ def monthly_challenges(request, month):
     if month in japan_travel_challenges:
         place = japan_travel_challenges[month]["place"]
         activities = japan_travel_challenges[month]["activities"]
-        activities_list = f"<ol>{''.join(f'<li>{activity}</li>' for activity in activities)}</ol>"
-
-        return HttpResponse(f"<h1>{month.capitalize()}</h1><h2>Destination: {place}</h2>{activities_list}")
+        html_content = render_to_string("challenges/challenge.html", {
+            "month": month,
+            "place": place,
+            "activities": activities
+        })
+        return HttpResponse(html_content)
     else:
         return HttpResponseNotFound("<h1>Not a valid month</h1>")
