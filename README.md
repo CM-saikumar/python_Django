@@ -1,14 +1,19 @@
 # This is a Django project for Understanding and Deployment from scratch
 
 # Creating a new Django Project 
+```
 Commad: django-admin startporject <project_name>
+```
 
 # Running the local server
+```
 command: python3 manage.py runserver
+```
 
 ## creating a new app 
+```
 command: python manage.py startapp <app_name>
-
+```
 
 # Japan Travel Challenges - Django Project
 
@@ -40,6 +45,8 @@ myDjangoLearning/
 │── myDjangoLearning/
 │   │── settings.py
 │   │── urls.py
+│── templates/
+│   │── base.html
 │── manage.py
 ```
 
@@ -104,17 +111,36 @@ OR
 
 ---
 
-## 🔹 Explanation of Parameters
+## Explanation of Parameters
 - `'url_name'`: The **name** of the URL pattern from `urls.py`.
 - `arg1, arg2, ...`: Dynamic **arguments** to be passed in the URL (if required).
 - `as var_name`: Stores the URL in a variable instead of rendering it directly. (Optional)
 
-## 🔹 Benefits of `{% url %}`
+## Benefits of `{% url %}`
 - Ensures URLs remain correct even if routes change.
 - Avoids hardcoding URLs.
 - Works with variables and loops dynamically.
 
 
+## Template Inheritance in Django
+- **Base Template**: Defines the common structure (like headers, footers) using blocks that can be overridden in child templates.
+
+- **Child Template**: Inherits from the base template using `{% extends %}` and customizes content by overriding specific blocks with `{% block %}`.
+
+- **Reusability**: Encourages code reuse, reducing duplication of common layout elements across different pages.
+
+- **Maintainability**: Makes it easier to update common elements (like a header or footer) in one place (the base template) instead of all pages.
+
+- **Settings**: Ensure that your templates are correctly configured in settings.py by defining the DIRS directory.
+
+---
+In `settings.py` under the project directory navigate to Templates list and add these permission so the the Django will understand the templates that was created.
+```
+'DIRS': [
+    BASE_DIR / 'templates',
+],
+```
+---
 ## Author
 - **Sai Kumar K G**
 
