@@ -86,6 +86,35 @@ The **challenge.html** file inside `templates/challenges/` is responsible for di
 - **Separation of Concerns**: Keeps HTML separate from backend logic.
   
 
+# Django `{% url %}` Template Tag
+
+## Overview
+The `{% url %}` template tag dynamically generates URLs in Django templates. This ensures that URLs remain consistent even if the `urls.py` configuration changes.
+
+---
+
+## 📌 Syntax
+```django
+{% url 'url_name' arg1 arg2 as var_name %}
+```
+OR
+```django
+<a href="{% url 'url_name' arg1 arg2 %}">Link Text</a>
+```
+
+---
+
+## 🔹 Explanation of Parameters
+- `'url_name'`: The **name** of the URL pattern from `urls.py`.
+- `arg1, arg2, ...`: Dynamic **arguments** to be passed in the URL (if required).
+- `as var_name`: Stores the URL in a variable instead of rendering it directly. (Optional)
+
+## 🔹 Benefits of `{% url %}`
+- Ensures URLs remain correct even if routes change.
+- Avoids hardcoding URLs.
+- Works with variables and loops dynamically.
+
+
 ## Author
 - **Sai Kumar K G**
 
