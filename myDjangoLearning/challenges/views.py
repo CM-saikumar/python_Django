@@ -102,16 +102,12 @@ japan_travel_challenges = {
     }
 }
 
+
 def list_of_months(request):
-    list_items = ""
     months = list(japan_travel_challenges.keys())
 
-    for month in months:
-        capitalize_month = month.capitalize()
-        month_path = reverse("montly-challenge", args=[month])
-        list_items += f"<li><a href=\"{month_path}\"><h2>{capitalize_month}</h2></a></li>"
-
-    response_data = f"<ul>{list_items}</ul>"
+    response_data = render(
+        request, "challenges/homePage.html", {"months": months})
     return HttpResponse(response_data)
 
 
@@ -121,7 +117,8 @@ def monthly_challenges_by_number(request, month):
     if month > len(months):
         return HttpResponseNotFound("<h1>Not a valid month</h1>")
     redirect_month = months[month - 1]
-    redirect_url = reverse("montly-challenge", args=[redirect_month]) # /challenge/{month}
+    # /challenge/{month}
+    redirect_url = reverse("montly-challenge", args=[redirect_month])
     return HttpResponseRedirect(redirect_url)
 
 
