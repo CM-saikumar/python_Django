@@ -19,20 +19,25 @@ This Django project provides a monthly travel challenge in Japan, suggesting des
 - **Monthly Challenge Details**: Shows the travel destination and activities for a given month.
 - **Number-Based Redirection**: Redirects users from `/challenges/{number}` to `/challenges/{month-name}`.
 - **Proper Error Handling**: Returns a 404 response for invalid months.
+- **Template-Based Rendering**: Uses Django templates to separate frontend from backend logic.
 
 ## Technologies Used
 - **Django**: Python-based web framework.
 - **Function-Based Views (FBVs)**: Handles request-response logic.
 - **Dynamic URL Routing**: Uses `<str:month>` and `<int:month>` parameters.
 - **HTML Rendering in Views**: Generates lists dynamically in responses.
+- **CSS Styling**: Improves the appearance of the list of months and challenge pages.
 
 ## Project Structure
 ```
-project_root/
+myDjangoLearning/
 │── challenges/
+│   │── templates/
+│   │   │── challenges/
+│   │   │   │── challenge.html
 │   │── views.py
 │   │── urls.py
-│── project_root/
+│── myDjangoLearning/
 │   │── settings.py
 │   │── urls.py
 │── manage.py
@@ -68,11 +73,18 @@ project_root/
 - **`reverse()` Function**: Generates URLs dynamically instead of hardcoding.
 - **`HttpResponseRedirect`**: Redirects users based on numeric month input.
 - **String Manipulation**: Formats month names properly.
+- **Django Templates**: Uses challenge.html to render challenge pages dynamically.
+- **Template Inheritance**: Allows reusing common HTML structures across pages.
 
-## Future Enhancements
-- Add **HTML Templates** instead of plain `HttpResponse`.
-- Use a **Database Model** to store challenge data dynamically.
-- Implement a **CSS-styled Frontend** for better UI/UX.
+
+## Understanding Templates
+
+The **challenge.html** file inside `templates/challenges/` is responsible for displaying the monthly challenge information. Instead of returning raw HTML from views, Django templates separate the presentation from logic.
+
+- **Dynamic Rendering**: The template receives data from views, such as the month, destination, and activities.
+- **Reusability**: The same template structure is used for multiple months.
+- **Separation of Concerns**: Keeps HTML separate from backend logic.
+  
 
 ## Author
 - **Sai Kumar K G**
