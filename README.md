@@ -207,20 +207,15 @@ Instead of hardcoding styles, we can define a **block** in the base template and
 Django needs to know where to find global static files. We define `STATICFILES_DIRS` for this purpose.
 
 ### **Adding `STATICFILES_DIRS` in `settings.py`**
-```python
-import os
-
-STATIC_URL = '/static/'
-
+```
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # Global static folder
+    BASE_DIR / "static"
 ]
 ```
 ### **Difference Between `STATICFILES_DIRS` and `STATIC_ROOT`**
 | Setting | Purpose |
 |---------|---------|
 | `STATICFILES_DIRS` | Defines additional directories where Django should look for static files during development. |
-| `STATIC_ROOT` | Defines where collected static files should be placed when running `collectstatic` (used in production). |
 
 
 
