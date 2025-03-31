@@ -1,5 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
+{% block css_style %}
+    <link rel="stylesheet" href="{% static 'challenges/challenge_page_style.css' %}">
+{% endblock css_style %}
 
 {% block titleBlock %}
     {{ month|capfirst }} Travel Challenge
