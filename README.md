@@ -212,7 +212,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 ```
-### **Difference Between `STATICFILES_DIRS` and `STATIC_ROOT`**
+### **Difference Between `STATICFILES_DIRS`**
 | Setting | Purpose |
 |---------|---------|
 | `STATICFILES_DIRS` | Defines additional directories where Django should look for static files during development. |
