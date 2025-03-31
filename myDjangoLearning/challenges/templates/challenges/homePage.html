@@ -1,10 +1,18 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block css_style %}
+    <link rel="stylesheet" href="{% static 'challenges/challenges.css' %}">
+    <link rel="stylesheet" href="{% static 'challenges/schedule.css' %}">
+{% endblock css_style %}
+
 
 {% block titleBlock %}    
     Travel Challenge
 {% endblock %}
 
 {% block BodyBlock  %}
+    <h1>Monthly Schedule</h1>
     <ul>
         {% for month in months %}
         <li><a href="{% url 'montly-challenge' month %}">{{ month|capfirst }}</a></li>
