@@ -37,15 +37,24 @@ This Django project provides a monthly travel challenge in Japan, suggesting des
 ```
 myDjangoLearning/
 │── challenges/
+│   │── static/
+│   │   │── challenges/
+│   │   │   │── challenge_page_style.css
+│   │   │   │── challenges.css
+│   │   │   │── schedule.css
 │   │── templates/
 │   │   │── challenges/
 │   │   │   │── challenge.html
+│   │   │   │── homePage.html
 │   │── views.py
 │   │── urls.py
 │── myDjangoLearning/
 │   │── settings.py
 │   │── urls.py
+│── static/
+│   │── styles.css
 │── templates/
+│   │── 404.html
 │   │── base.html
 │── manage.py
 ```
@@ -141,6 +150,80 @@ In `settings.py` under the project directory navigate to Templates list and add 
 ],
 ```
 ---
+
+## Understanding `{% load static %}` and Linking CSS Files
+### **Loading Static Files in Django**
+Django provides the `{% load static %}` template tag to access static files like CSS, JavaScript, and images.
+
+#### **Usage in a Template**
+```django
+{% load static %}
+<link rel="stylesheet" href="{% static 'challenges/challenge_page_style.css' %}">
+```
+- `{% load static %}` → Enables static file handling in templates.
+- `{% static 'path/to/file' %}` → Resolves the static file’s URL.
+
+### **Using `{% block css_style %}` in Templates**
+Instead of hardcoding styles, we can define a **block** in the base template and override it in child templates.
+
+#### **Example in `base.html`**
+```django
+<head>
+    {% block css_style %}{% endblock css_style %}
+</head>
+```
+
+#### **Example in `challenge.html` (Child Template)**
+```django
+{% block css_style %}
+    <link rel="stylesheet" href="{% static 'challenges/challenge_page_style.css' %}">
+{% endblock css_style %}
+```
+- This ensures modular and reusable styling.
+
+## **Static Files in Application vs. Project Level**
+### **Static Files Inside an App (Application Level)**
+- Each Django app can have its own `static/` folder.
+- Example structure:
+  ```
+  challenges/
+  ├── static/
+  │   ├── challenges/
+  │   │   ├── challenge_page_style.css
+  ```
+- **Usage:** `{% static 'challenges/challenge_page_style.css' %}`
+
+### **Global Static Files (Project Level)**
+- If you have static files **shared** across multiple apps, place them in a central `static/` directory at the project level.
+- Example:
+  ```
+  myDjangoLearning/
+  ├── static/
+  │   ├── global.css
+  ```
+- **Usage:** `{% static 'global.css' %}`
+
+## **Configuring `STATICFILES_DIRS` in `settings.py`**
+Django needs to know where to find global static files. We define `STATICFILES_DIRS` for this purpose.
+
+### **Adding `STATICFILES_DIRS` in `settings.py`**
+```python
+import os
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Global static folder
+]
+```
+### **Difference Between `STATICFILES_DIRS` and `STATIC_ROOT`**
+| Setting | Purpose |
+|---------|---------|
+| `STATICFILES_DIRS` | Defines additional directories where Django should look for static files during development. |
+| `STATIC_ROOT` | Defines where collected static files should be placed when running `collectstatic` (used in production). |
+
+
+
 ## Author
 - **Sai Kumar K G**
 
